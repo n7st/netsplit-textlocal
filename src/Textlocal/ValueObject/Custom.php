@@ -3,12 +3,13 @@
 namespace Netsplit\Textlocal\Textlocal\ValueObject;
 
 /**
- * Class RecipientList
+ * Class Custom describes a generic string object that can be sent to the API
+ * (for example as a quote reference).
  *
  * @package Netsplit\Textlocal\Textlocal\ValueObject
  * @author Mike Jones <mike@netsplit.org.uk>
- * @since 2018-04-07
+ * @since 2018-07-04
  */
-final class RecipientList extends OurString
+class Custom extends OurString
 {
 }

@@ -22,10 +22,8 @@ final class SendSMSService extends HTTPService
      */
     public function send(SMS $message)
     {
-        return $this->post([
-            'message' => $message->getContent(),
-            'numbers' => $message->getRecipients(),
-            'sender'  => $message->getSender(),
-        ]);
+        var_dump($message->toServiceArguments());
+        return [];
+        return $this->post($message->toServiceArguments());
     }
 }

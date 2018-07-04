@@ -3,8 +3,6 @@
 namespace Netsplit\Textlocal;
 
 use Netsplit\Textlocal\Textlocal\Service\SendSMSService;
-use Netsplit\Textlocal\Textlocal\ValueObject\Sender;
-use Netsplit\Textlocal\Textlocal\ValueObject\SMSContent;
 
 /**
  * Class Textlocal
@@ -44,19 +42,16 @@ class Textlocal
 
     /**
      * Send an SMS.
+     *
      * @param string $message
-     * @param string $sender
      * @param array $recipients
-     * @throws Textlocal\Exception\NoRecipientsError
+     * @param array $extraArgs
      * @throws Textlocal\Exception\HTTPError
+     * @throws Textlocal\Exception\NoRecipientsError
      */
-    public function sendSMS($message, $sender, $recipients)
+    public function sendSMS($message, $recipients, $extraArgs = [])
     {
-        $sms = (new Textlocal\Factory\SMSFactory)->make(
-            new Sender($sender),
-            new SMSContent($message),
-            $recipients
-        );
+        $sms = (new Textlocal\Factory\SMSFactory)->make($message, $recipients, $extraArgs);
 
         $this->sendSMSService->send($sms);
     }

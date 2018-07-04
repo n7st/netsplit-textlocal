@@ -3,16 +3,16 @@
 namespace Netsplit\Textlocal\Textlocal\ValueObject;
 
 /**
- * Interface ValueObject
+ * Class BooleanValueObject
  *
  * @package Netsplit\Textlocal\Textlocal\ValueObject
  * @author Mike Jones <mike@netsplit.org.uk>
- * @since 2018-07-03
+ * @since 2018-07-04
  */
-interface ValueObject
+interface BooleanValueObject
 {
     /**
-     * @return string
+     * @return bool
      */
-    public function __toString();
+    public function getValue();
 }

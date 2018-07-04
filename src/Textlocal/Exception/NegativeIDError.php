@@ -3,16 +3,16 @@
 namespace Netsplit\Textlocal\Textlocal\Exception;
 
 /**
- * Class NoRecipientsError
+ * Class NegativeIDError
  *
  * @package Netsplit\Textlocal\Textlocal\Exception
  * @author Mike Jones <mike@netsplit.org.uk>
  * @since 2018-07-04
  */
-class NoRecipientsError extends \Exception
+class NegativeIDError extends \Exception
 {
     /**
      * @var int
      */
-    protected $code = 12;
+    protected $code = 15;
 }
