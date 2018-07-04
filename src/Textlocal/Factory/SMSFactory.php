@@ -27,17 +27,23 @@ final class SMSFactory
     /**
      * @var array
      */
-    protected static $optionalOptionValueObjectMap = [
+    protected static $optionalBooleanOptionMap = [
         'containsTrackingLinks' => ContainsTrackingLinks::class,
-        'custom'                => Custom::class,
-        'groupID'               => GroupID::class,
-        'receiptURL'            => ReceiptURL::class,
         'sendToOptOut'          => SendToOptOut::class,
-        'sender'                => Sender::Class,
         'simpleReply'           => SimpleReply::class,
         'test'                  => Test::class,
         'unicode'               => Unicode::class,
-        'validUntil'            => ValidUntil::class,
+    ];
+
+    /**
+     * @var array
+     */
+    protected static $optionalOptionValueObjectMap = [
+        'custom'     => Custom::class,
+        'groupID'    => GroupID::class,
+        'receiptURL' => ReceiptURL::class,
+        'sender'     => Sender::class,
+        'validUntil' => ValidUntil::class,
     ];
 
     /**
@@ -72,7 +78,7 @@ final class SMSFactory
         $recipientList = (new RecipientListFactory)->make($recipients);
         $content       = new SMSContent($content);
 
-        $booleanOptions = array_keys(SMS::$optionalOptionMap);
+        $booleanOptions = array_keys(self::$optionalBooleanOptionMap);
 
         foreach ($booleanOptions as $opt) {
             if (!isset($extraArgs[$opt])) {
@@ -85,7 +91,12 @@ final class SMSFactory
         $sms->setContent($content);
         $sms->setRecipientList($recipientList);
 
-        foreach (self::$optionalOptionValueObjectMap as $arg => $class) {
+        $allOptionalOptions = [
+            self::$optionalOptionValueObjectMap,
+            self::$optionalBooleanOptionMap
+        ];
+
+        foreach ($allOptionalOptions as $arg => $class) {
             if (isset($extraArgs[$arg])) {
                 $setter = self::$setterMap[$arg];
 

@@ -46,6 +46,7 @@ class Textlocal
      * @param string $message
      * @param array $recipients
      * @param array $extraArgs
+     * @return array
      * @throws Textlocal\Exception\HTTPError
      * @throws Textlocal\Exception\NoRecipientsError
      */
@@ -53,7 +54,7 @@ class Textlocal
     {
         $sms = (new Textlocal\Factory\SMSFactory)->make($message, $recipients, $extraArgs);
 
-        $this->sendSMSService->send($sms);
+        return $this->sendSMSService->send($sms);
     }
 
     /**
