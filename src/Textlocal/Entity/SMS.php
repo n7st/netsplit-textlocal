@@ -32,14 +32,14 @@ final class SMS
         'containsTrackingLinks' => 'tracking_links',
         'custom'                => 'custom',
         'groupID'               => 'group_id',
+        'receiptURL'            => 'receipt_url',
+        'scheduleTime'          => 'schedule_time',
         'sendToOptOut'          => 'optouts',
+        'sender'                => 'sender',
         'simpleReply'           => 'simple_reply',
         'test'                  => 'test',
         'unicode'               => 'unicode',
         'validUntil'            => 'validity',
-        'sender'                => 'sender',
-        'scheduleTime'          => 'schedule_time',
-        'receiptURL'            => 'receipt_url',
     ];
 
     /**

@@ -26,11 +26,26 @@ $textlocal = new Netsplit\Textlocal(
 
 ### Send an SMS message
 
+API documentation is available for the "send" endpoint [here](http://api.txtlocal.com/docs/sendsms).
+
 ```php
-$textlocal->sendSMS('Message content', 'Sender name here', [
+$textlocal->sendSMS('Message content', [
     // Array of mobile numbers
     '07777777777',
     '07777777778',
+], [
+    // Optional values
+    'containsTrackingLinks' => false, // Should URLs in the SMS be minified?
+    'custom'                => 'Any string', // For use as a reference
+    'groupID'               => 5, // A Textlocal group ID
+    'receiptURL'            => 'http://[...]', // Custom receipt URL
+    'scheduleAt'            => 1530735900, // Unix timestamp - send the SMS at this time
+    'sender'                => 'Optional Sender Name',
+    'sendToOptOut'          => false, // Should the SMS be sent to users who have opted out?
+    'simpleReply'           => false, // Disregard sender
+    'test'                  => true, // Don't really send the SMS
+    'unicode'               => false, // Does the SMS contain unicode characters?
+    'validUntil'            => 1530735994, // Unix timestamp - disregard the SMS at this time
 ]);
 ```
 
