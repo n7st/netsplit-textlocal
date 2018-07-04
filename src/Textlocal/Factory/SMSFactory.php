@@ -91,10 +91,10 @@ final class SMSFactory
         $sms->setContent($content);
         $sms->setRecipientList($recipientList);
 
-        $allOptionalOptions = [
+        $allOptionalOptions = array_merge(
             self::$optionalOptionValueObjectMap,
             self::$optionalBooleanOptionMap
-        ];
+        );
 
         foreach ($allOptionalOptions as $arg => $class) {
             if (isset($extraArgs[$arg])) {
