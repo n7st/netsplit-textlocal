@@ -2,11 +2,11 @@
 
 namespace Netsplit\Textlocal\Textlocal\Entity;
 
-use Netsplit\Textlocal\Textlocal\ValueObject\BooleanContainsTrackingLinks;
-use Netsplit\Textlocal\Textlocal\ValueObject\BooleanSendToOptOut;
-use Netsplit\Textlocal\Textlocal\ValueObject\BooleanSimpleReply;
-use Netsplit\Textlocal\Textlocal\ValueObject\BooleanTest;
-use Netsplit\Textlocal\Textlocal\ValueObject\BooleanUnicode;
+use Netsplit\Textlocal\Textlocal\ValueObject\ContainsTrackingLinks;
+use Netsplit\Textlocal\Textlocal\ValueObject\SendToOptOut;
+use Netsplit\Textlocal\Textlocal\ValueObject\SimpleReply;
+use Netsplit\Textlocal\Textlocal\ValueObject\Test;
+use Netsplit\Textlocal\Textlocal\ValueObject\Unicode;
 use Netsplit\Textlocal\Textlocal\ValueObject\Custom;
 use Netsplit\Textlocal\Textlocal\ValueObject\GroupID;
 use Netsplit\Textlocal\Textlocal\ValueObject\ReceiptURL;
@@ -139,46 +139,46 @@ final class SMS
     }
 
     /**
-     * @param BooleanSimpleReply $simpleReply
+     * @param SimpleReply $simpleReply
      * @return void
      */
-    public function setSimpleReply(BooleanSimpleReply $simpleReply)
+    public function setSimpleReply(SimpleReply $simpleReply)
     {
         $this->simpleReply = $simpleReply->getValue();
     }
 
     /**
-     * @param BooleanTest $test
+     * @param Test $test
      * @return void
      */
-    public function setTest(BooleanTest $test)
+    public function setTest(Test $test)
     {
         $this->test = $test->getValue();
     }
 
     /**
-     * @param BooleanUnicode $unicode
+     * @param Unicode $unicode
      * @return void
      */
-    public function setUnicode(BooleanUnicode $unicode)
+    public function setUnicode(Unicode $unicode)
     {
         $this->unicode = $unicode->getValue();
     }
 
     /**
-     * @param BooleanContainsTrackingLinks $containsTrackingLinks
+     * @param ContainsTrackingLinks $containsTrackingLinks
      * @return void
      */
-    public function setContainsTrackingLinks(BooleanContainsTrackingLinks $containsTrackingLinks)
+    public function setContainsTrackingLinks(ContainsTrackingLinks $containsTrackingLinks)
     {
         $this->containsTrackingLinks = $containsTrackingLinks->getValue();
     }
 
     /**
-     * @param BooleanSendToOptOut $sendToOptOut
+     * @param SendToOptOut $sendToOptOut
      * @return void
      */
-    public function setSendToOptOut(BooleanSendToOptOut $sendToOptOut)
+    public function setSendToOptOut(SendToOptOut $sendToOptOut)
     {
         $this->sendToOptOut = $sendToOptOut->getValue();
     }
