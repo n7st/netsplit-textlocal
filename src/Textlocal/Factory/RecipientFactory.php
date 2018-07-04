@@ -1,6 +1,7 @@
 <?php
 
 namespace Netsplit\Textlocal\Textlocal\Factory;
+
 use Netsplit\Textlocal\Textlocal\ValueObject\Recipient;
 
 /**
