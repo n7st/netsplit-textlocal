@@ -3,11 +3,11 @@
 namespace Netsplit\Textlocal\Textlocal\Factory;
 
 use Netsplit\Textlocal\Textlocal\Entity\SMS;
-use Netsplit\Textlocal\Textlocal\ValueObject\BooleanContainsTrackingLinks;
-use Netsplit\Textlocal\Textlocal\ValueObject\BooleanSendToOptOut;
-use Netsplit\Textlocal\Textlocal\ValueObject\BooleanSimpleReply;
-use Netsplit\Textlocal\Textlocal\ValueObject\BooleanTest;
-use Netsplit\Textlocal\Textlocal\ValueObject\BooleanUnicode;
+use Netsplit\Textlocal\Textlocal\ValueObject\ContainsTrackingLinks;
+use Netsplit\Textlocal\Textlocal\ValueObject\SendToOptOut;
+use Netsplit\Textlocal\Textlocal\ValueObject\SimpleReply;
+use Netsplit\Textlocal\Textlocal\ValueObject\Test;
+use Netsplit\Textlocal\Textlocal\ValueObject\Unicode;
 use Netsplit\Textlocal\Textlocal\ValueObject\Custom;
 use Netsplit\Textlocal\Textlocal\ValueObject\GroupID;
 use Netsplit\Textlocal\Textlocal\ValueObject\ReceiptURL;
@@ -28,15 +28,15 @@ final class SMSFactory
      * @var array
      */
     protected static $optionalOptionValueObjectMap = [
-        'containsTrackingLinks' => BooleanContainsTrackingLinks::class,
+        'containsTrackingLinks' => ContainsTrackingLinks::class,
         'custom'                => Custom::class,
         'groupID'               => GroupID::class,
         'receiptURL'            => ReceiptURL::class,
-        'sendToOptOut'          => BooleanSendToOptOut::class,
+        'sendToOptOut'          => SendToOptOut::class,
         'sender'                => Sender::Class,
-        'simpleReply'           => BooleanSimpleReply::class,
-        'test'                  => BooleanTest::class,
-        'unicode'               => BooleanUnicode::class,
+        'simpleReply'           => SimpleReply::class,
+        'test'                  => Test::class,
+        'unicode'               => Unicode::class,
         'validUntil'            => ValidUntil::class,
     ];
 
