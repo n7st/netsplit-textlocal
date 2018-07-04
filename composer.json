@@ -4,7 +4,8 @@
     "description": "A generic Textlocal SMS library",
     "keywords": [
         "netsplit",
-        "textlocal"
+        "textlocal",
+        "sms"
     ],
     "homepage": "https://git.netsplit.uk/mike/netsplit-textlocal",
     "license": "MIT",
