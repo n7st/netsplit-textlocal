@@ -2,7 +2,7 @@
 
 Contributions are **welcome** and will be fully **credited**.
 
-We accept contributions via Pull Requests on [Github](https://git.netsplit.uk/mike/netsplit-textlocal).
+We accept contributions via Pull Requests on [Github](https://git.netsplit.uk/labs/netsplit-textlocal).
 
 
 ## Pull Requests
