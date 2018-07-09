@@ -3,6 +3,7 @@
 namespace Netsplit\Textlocal\Textlocal\Service;
 
 use Netsplit\Textlocal\Textlocal\Entity\SMS;
+use Netsplit\Textlocal\Textlocal\Entity\SMSResponse;
 
 /**
  * Class SendSMSService
@@ -17,11 +18,13 @@ final class SendSMSService extends HTTPService
      * Send an SMS message.
      *
      * @param SMS $message
-     * @return array
+     * @return SMSResponse
      * @throws \Netsplit\Textlocal\Textlocal\Exception\HTTPError
      */
     public function send(SMS $message)
     {
-        return $this->post($message->toServiceArguments());
+        $response = $this->post($message->toServiceArguments());
+
+        return SMSResponse::fromResponse($response, $message);
     }
 }

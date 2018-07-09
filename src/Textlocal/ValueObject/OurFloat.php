@@ -3,22 +3,22 @@
 namespace Netsplit\Textlocal\Textlocal\ValueObject;
 
 /**
- * Class String
+ * Class OurFloat
  *
  * @package Netsplit\Textlocal\Textlocal\ValueObject
  * @author Mike Jones <mike@netsplit.org.uk>
- * @since 2018-07-04
+ * @since 2018-07-09
  */
-abstract class OurString implements StringValueObject
+abstract class OurFloat implements FloatValueObject
 {
     /**
-     * @var string
+     * @var float
      */
     protected $value;
 
     /**
-     * String constructor.
-     * @param string $value
+     * OurFloat constructor.
+     * @param float $value
      * @return void
      */
     public function __construct($value)
@@ -27,10 +27,10 @@ abstract class OurString implements StringValueObject
     }
 
     /**
-     * @return string
+     * @return float
      */
-    public function __toString()
+    public function getValue()
     {
-        return (string)$this->value;
+        return $this->value;
     }
 }
