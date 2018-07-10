@@ -1,0 +1,8 @@
+---
+pipeline:
+    test:
+        image: php:7.2
+        commands:
+            - curl --location --output /usr/local/bin/phpunit https://phar.phpunit.de/phpunit.phar
+            - chmod +x /usr/local/bin/phpunit
+            - phpunit
