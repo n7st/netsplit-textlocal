@@ -1,6 +1,7 @@
 build
 composer.lock
 vendor
+composer.phar
 .idea
 
 test.php
