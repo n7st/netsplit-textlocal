@@ -16,8 +16,14 @@ use Netsplit\Textlocal\Textlocal\ValueObject\RecipientID;
  */
 final class RecipientFactory
 {
+    /**
+     * The name for a PhoneNumber in Textlocal's response.
+     */
     const KEY_RECIPIENT = 'recipient';
 
+    /**
+     * The name for a RecipientID in Textlocal's response.
+     */
     const KEY_ID = 'id';
 
     /**
@@ -38,7 +44,7 @@ final class RecipientFactory
             return isset($r[self::KEY_RECIPIENT]);
         });
 
-        $recipients = array_map(function ($r) {
+        $RecipientList = array_map(function ($r) {
             $recipient = new Recipient();
 
             $recipient->setNumber(new PhoneNumber($r[self::KEY_RECIPIENT]));
@@ -50,13 +56,13 @@ final class RecipientFactory
             return $recipient;
         }, $args);
 
-        if (!count($recipients)) {
+        if (!count($RecipientList)) {
             throw new NoRecipientsError('No recipients were provided');
         }
 
-        $this->recipients = $recipients;
+        $this->recipients = $RecipientList;
 
-        return $recipients;
+        return $RecipientList;
     }
 
     /**
