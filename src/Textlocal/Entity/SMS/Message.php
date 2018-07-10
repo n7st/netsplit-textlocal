@@ -119,6 +119,14 @@ final class Message
     }
 
     /**
+     * @return Sender
+     */
+    public function getSender()
+    {
+        return $this->sender;
+    }
+
+    /**
      * @param SMSContent $content
      * @return void
      */
@@ -154,12 +162,28 @@ final class Message
     }
 
     /**
+     * @return SimpleReply
+     */
+    public function getSimpleReply()
+    {
+        return $this->simpleReply;
+    }
+
+    /**
      * @param Test $test
      * @return void
      */
     public function setTest(Test $test)
     {
         $this->test = $test;
+    }
+
+    /**
+     * @return Test
+     */
+    public function getTest()
+    {
+        return $this->test;
     }
 
     /**
@@ -172,12 +196,28 @@ final class Message
     }
 
     /**
+     * @return Unicode
+     */
+    public function getUnicode()
+    {
+        return $this->unicode;
+    }
+
+    /**
      * @param ContainsTrackingLinks $containsTrackingLinks
      * @return void
      */
     public function setContainsTrackingLinks(ContainsTrackingLinks $containsTrackingLinks)
     {
         $this->containsTrackingLinks = $containsTrackingLinks;
+    }
+
+    /**
+     * @return ContainsTrackingLinks
+     */
+    public function getContainsTrackingLinks()
+    {
+        return $this->containsTrackingLinks;
     }
 
     /**
@@ -199,12 +239,28 @@ final class Message
     }
 
     /**
+     * @return ScheduledAt
+     */
+    public function getScheduleTime()
+    {
+        return $this->scheduleTime;
+    }
+
+    /**
      * @param ValidUntil $validUntil
      * @return void
      */
     public function setValidUntil(ValidUntil $validUntil)
     {
         $this->validUntil = $validUntil;
+    }
+
+    /**
+     * @return ValidUntil
+     */
+    public function getValidUntil()
+    {
+        return $this->validUntil;
     }
 
     /**
@@ -226,12 +282,52 @@ final class Message
     }
 
     /**
+     * @return GroupID
+     */
+    public function getGroupID()
+    {
+        return $this->groupID;
+    }
+
+    /**
      * @param Custom $custom
      * @return void
      */
     public function setCustom(Custom $custom)
     {
         $this->custom = $custom;
+    }
+
+    /**
+     * @return Custom
+     */
+    public function getCustom()
+    {
+        return $this->custom;
+    }
+
+    /**
+     * @return ReceiptURL
+     */
+    public function getReceiptURL()
+    {
+        return $this->receiptURL;
+    }
+
+    /**
+     * @return RecipientList
+     */
+    public function getRecipients()
+    {
+        return $this->recipients;
+    }
+
+    /**
+     * @param RecipientList $recipients
+     */
+    public function setRecipients($recipients)
+    {
+        $this->recipients = $recipients;
     }
 
     /**
@@ -280,101 +376,5 @@ final class Message
         }
 
         return $args;
-    }
-
-    /**
-     * @return Custom
-     */
-    public function getCustom()
-    {
-        return $this->custom;
-    }
-
-    /**
-     * @return Sender
-     */
-    public function getSender()
-    {
-        return $this->sender;
-    }
-
-    /**
-     * @return ReceiptURL
-     */
-    public function getReceiptURL()
-    {
-        return $this->receiptURL;
-    }
-
-    /**
-     * @return RecipientList
-     */
-    public function getRecipients()
-    {
-        return $this->recipients;
-    }
-
-    /**
-     * @param RecipientList $recipients
-     */
-    public function setRecipients($recipients)
-    {
-        $this->recipients = $recipients;
-    }
-
-    /**
-     * @return GroupID
-     */
-    public function getGroupID()
-    {
-        return $this->groupID;
-    }
-
-    /**
-     * @return ScheduledAt
-     */
-    public function getScheduleTime()
-    {
-        return $this->scheduleTime;
-    }
-
-    /**
-     * @return SimpleReply
-     */
-    public function getSimpleReply()
-    {
-        return $this->simpleReply;
-    }
-
-    /**
-     * @return ContainsTrackingLinks
-     */
-    public function getContainsTrackingLinks()
-    {
-        return $this->containsTrackingLinks;
-    }
-
-    /**
-     * @return Unicode
-     */
-    public function getUnicode()
-    {
-        return $this->unicode;
-    }
-
-    /**
-     * @return ValidUntil
-     */
-    public function getValidUntil()
-    {
-        return $this->validUntil;
-    }
-
-    /**
-     * @return Test
-     */
-    public function getTest()
-    {
-        return $this->test;
     }
 }
