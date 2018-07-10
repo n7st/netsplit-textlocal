@@ -20,3 +20,4 @@ pipeline:
             - php composer.phar install
             - ./vendor/bin/phpunit
             - rm composer.phar
+
