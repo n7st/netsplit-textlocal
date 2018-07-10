@@ -2,19 +2,19 @@
 
 namespace Test\Netsplit\Textlocal\Unit\Factory;
 
-use Netsplit\Textlocal\Textlocal\Entity\SMS;
+use Netsplit\Textlocal\Textlocal\Entity\SMS\Message;
 
 /**
- * Class SMSFactoryTest
+ * Class MessageFactoryTest
  *
- * @package Test\Netsplit\Textlocal\Unit\Factory
+ * @package Test\Netsplit\Textlocal\Unit\Factory\SMS
  * @author Mike Jones <mike@netsplit.org.uk>
  * @since 2018-07-04
  */
-class SMSFactoryTest extends \PHPUnit\Framework\TestCase
+class MessageFactoryTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @var SMS
+     * @var Message
      */
     private $sms;
 
@@ -26,7 +26,7 @@ class SMSFactoryTest extends \PHPUnit\Framework\TestCase
      */
     public function setUp()
     {
-        $this->sms = (new \Netsplit\Textlocal\Textlocal\Factory\SMSFactory)->make('Message here', [
+        $this->sms = (new \Netsplit\Textlocal\Textlocal\Factory\SMS\MessageFactory)->make('Message here', [
             '07777777777',
             '07777777778',
             '07777777779',

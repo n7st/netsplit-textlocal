@@ -3,12 +3,12 @@
 namespace Netsplit\Textlocal\Textlocal\ValueObject;
 
 /**
- * Class Recipient
+ * Class RecipientID
  *
  * @package Netsplit\Textlocal\Textlocal\ValueObject
  * @author Mike Jones <mike@netsplit.org.uk>
- * @since 2018-07-03
+ * @since 2018-07-10
  */
-final class Recipient extends OurString
+class RecipientID extends ID
 {
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Netsplit\Textlocal\Textlocal\Entity;
+namespace Netsplit\Textlocal\Textlocal\Entity\SMS;
 
 use Netsplit\Textlocal\Textlocal\ValueObject\ContainsTrackingLinks;
 use Netsplit\Textlocal\Textlocal\ValueObject\SendToOptOut;
@@ -17,13 +17,13 @@ use Netsplit\Textlocal\Textlocal\ValueObject\SMSContent;
 use Netsplit\Textlocal\Textlocal\ValueObject\ValidUntil;
 
 /**
- * Class SMS describes a message to be sent to a number of mobile numbers.
+ * Class Message describes a message to be sent to a number of mobile numbers.
  *
- * @package Netsplit\Textlocal\Textlocal\Entity
+ * @package Netsplit\Textlocal\Textlocal\Entity\SMS
  * @author Mike Jones <mike@netsplit.org.uk>
  * @since 2018-07-04
  */
-final class SMS
+final class Message
 {
     /**
      * @var array

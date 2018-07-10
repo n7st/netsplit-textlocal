@@ -2,6 +2,9 @@
 
 namespace Netsplit\Textlocal\Textlocal\Entity\SMS;
 
+use Netsplit\Textlocal\Textlocal\ValueObject\PhoneNumber;
+use Netsplit\Textlocal\Textlocal\ValueObject\RecipientID;
+
 /**
  * Class Recipient
  *
@@ -12,12 +15,44 @@ namespace Netsplit\Textlocal\Textlocal\Entity\SMS;
 final class Recipient
 {
     /**
-     * @var int
+     * @var RecipientID
      */
     private $id;
 
     /**
-     * @var string
+     * @var PhoneNumber
      */
     private $number;
+
+    /**
+     * @return RecipientID
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param RecipientID $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return PhoneNumber
+     */
+    public function getNumber()
+    {
+        return $this->number;
+    }
+
+    /**
+     * @param PhoneNumber $number
+     */
+    public function setNumber($number)
+    {
+        $this->number = $number;
+    }
 }

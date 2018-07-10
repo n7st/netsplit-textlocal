@@ -1,6 +1,6 @@
 <?php
 
-namespace Netsplit\Textlocal\Textlocal\Entity;
+namespace Netsplit\Textlocal\Textlocal\Entity\SMS;
 
 /**
  * Class SMSResponse contains a Textlocal response from a "send" action.
@@ -9,7 +9,7 @@ namespace Netsplit\Textlocal\Textlocal\Entity;
  * @author Mike Jones <mike@netsplit.org.uk>
  * @since 2018-07-09
  */
-class SMSResponse
+class Response
 {
     /**
      * @var float
@@ -39,52 +39,19 @@ class SMSResponse
     /**
      * The message we sent to Textlocal.
      *
-     * @var SMS
+     * @var Message
      */
     private $message;
 
     /**
-     * @var array
+     * @var Recipient[]
      */
-    private $messages;
+    private $recipients;
 
     /**
      * @var string
      */
     private $status;
-
-    /**
-     * @var array
-     */
-    private static $responseSetterMap = [
-        'balance'  => 'setBalance',
-        'batch_id' => 'setBatchId',
-        'cost'     => 'setCost',
-        'messages' => 'setMessages',
-        'status'   => 'setStatus',
-    ];
-
-    /**
-     * Create a new SMSResponse object from Textlocal's API response.
-     *
-     * @param $res
-     * @param SMS $message
-     * @return SMSResponse
-     */
-    public static function fromResponse($res, SMS $message)
-    {
-        $ret = new self();
-
-        $ret->setMessage($message);
-
-        foreach (self::$responseSetterMap as $field => $setter) {
-            if (isset($res->$field)) {
-                $ret->$setter($res->$field);
-            }
-        }
-
-        return $ret;
-    }
 
     /**
      * @return float
@@ -151,7 +118,7 @@ class SMSResponse
     }
 
     /**
-     * @return SMS
+     * @return Message
      */
     public function getMessage()
     {
@@ -159,27 +126,11 @@ class SMSResponse
     }
 
     /**
-     * @param SMS $message
+     * @param Message $message
      */
     public function setMessage($message)
     {
         $this->message = $message;
-    }
-
-    /**
-     * @return array
-     */
-    public function getMessages()
-    {
-        return $this->messages;
-    }
-
-    /**
-     * @param array $messages
-     */
-    public function setMessages($messages)
-    {
-        $this->messages = $messages;
     }
 
     /**
@@ -196,5 +147,21 @@ class SMSResponse
     public function setStatus($status)
     {
         $this->status = $status;
+    }
+
+    /**
+     * @return Recipient[]
+     */
+    public function getRecipients()
+    {
+        return $this->recipients;
+    }
+
+    /**
+     * @param Recipient[] $recipients
+     */
+    public function setRecipients($recipients)
+    {
+        $this->recipients = $recipients;
     }
 }
