@@ -12,7 +12,7 @@ use Netsplit\Textlocal\Textlocal\Factory\SMS\RecipientFactory;
  * @author Mike Jones <mike@netsplit.org.uk>
  * @since 2018-07-04
  */
-class RecipientFactoryTest extends \PHPUnit\Framework\TestCase
+final class RecipientFactoryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @return void

@@ -11,7 +11,7 @@ use Netsplit\Textlocal\Textlocal\Entity\SMS\Message;
  * @author Mike Jones <mike@netsplit.org.uk>
  * @since 2018-07-04
  */
-class MessageFactoryTest extends \PHPUnit\Framework\TestCase
+final class MessageFactoryTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Message

@@ -2,6 +2,15 @@
 
 namespace Netsplit\Textlocal\Textlocal\Entity\SMS;
 
+use Netsplit\Textlocal\Textlocal\ValueObject\Balance;
+use Netsplit\Textlocal\Textlocal\ValueObject\BatchID;
+use Netsplit\Textlocal\Textlocal\ValueObject\Cost;
+use Netsplit\Textlocal\Textlocal\ValueObject\Custom;
+use Netsplit\Textlocal\Textlocal\ValueObject\Quantity;
+use Netsplit\Textlocal\Textlocal\ValueObject\ReceiptURL;
+use Netsplit\Textlocal\Textlocal\ValueObject\Status;
+use Netsplit\Textlocal\Textlocal\ValueObject\Test;
+
 /**
  * Class SMSResponse contains a Textlocal response from a "send" action.
  *
@@ -12,19 +21,19 @@ namespace Netsplit\Textlocal\Textlocal\Entity\SMS;
 class Response
 {
     /**
-     * @var float
+     * @var Balance
      */
     private $balance;
 
     /**
-     * @var int
+     * @var BatchID
      */
     private $batchId;
 
     /**
      * How much the message cost to send.
      *
-     * @var float
+     * @var Cost
      */
     private $cost;
 
@@ -32,7 +41,7 @@ class Response
      * The number of messages that were sent (if the message was split into
      * chunks).
      *
-     * @var int
+     * @var Quantity
      */
     private $quantity;
 
@@ -49,12 +58,27 @@ class Response
     private $recipients;
 
     /**
-     * @var string
+     * @var Status
      */
     private $status;
 
     /**
-     * @return float
+     * @var Test
+     */
+    private $test;
+
+    /**
+     * @var ReceiptURL
+     */
+    private $receiptUrl;
+
+    /**
+     * @var Custom
+     */
+    private $custom;
+
+    /**
+     * @return Balance
      */
     public function getBalance()
     {
@@ -62,7 +86,7 @@ class Response
     }
 
     /**
-     * @param float $balance
+     * @param Balance $balance
      */
     public function setBalance($balance)
     {
@@ -70,7 +94,7 @@ class Response
     }
 
     /**
-     * @return int
+     * @return BatchID
      */
     public function getBatchId()
     {
@@ -78,7 +102,7 @@ class Response
     }
 
     /**
-     * @param int $batchId
+     * @param BatchID $batchId
      */
     public function setBatchId($batchId)
     {
@@ -86,7 +110,7 @@ class Response
     }
 
     /**
-     * @return float
+     * @return Cost
      */
     public function getCost()
     {
@@ -94,7 +118,7 @@ class Response
     }
 
     /**
-     * @param float $cost
+     * @param Cost $cost
      */
     public function setCost($cost)
     {
@@ -102,7 +126,7 @@ class Response
     }
 
     /**
-     * @return int
+     * @return Quantity
      */
     public function getQuantity()
     {
@@ -110,7 +134,7 @@ class Response
     }
 
     /**
-     * @param int $quantity
+     * @param Quantity $quantity
      */
     public function setQuantity($quantity)
     {
@@ -134,7 +158,7 @@ class Response
     }
 
     /**
-     * @return string
+     * @return Status
      */
     public function getStatus()
     {
@@ -142,7 +166,7 @@ class Response
     }
 
     /**
-     * @param string $status
+     * @param Status $status
      */
     public function setStatus($status)
     {
@@ -163,5 +187,53 @@ class Response
     public function setRecipients($recipients)
     {
         $this->recipients = $recipients;
+    }
+
+    /**
+     * @return Test
+     */
+    public function getTest()
+    {
+        return $this->test;
+    }
+
+    /**
+     * @param Test $test
+     */
+    public function setTest($test)
+    {
+        $this->test = $test;
+    }
+
+    /**
+     * @return ReceiptURL
+     */
+    public function getReceiptUrl()
+    {
+        return $this->receiptUrl;
+    }
+
+    /**
+     * @param ReceiptURL $receiptUrl
+     */
+    public function setReceiptUrl($receiptUrl)
+    {
+        $this->receiptUrl = $receiptUrl;
+    }
+
+    /**
+     * @return Custom
+     */
+    public function getCustom()
+    {
+        return $this->custom;
+    }
+
+    /**
+     * @param Custom $custom
+     */
+    public function setCustom($custom)
+    {
+        $this->custom = $custom;
     }
 }

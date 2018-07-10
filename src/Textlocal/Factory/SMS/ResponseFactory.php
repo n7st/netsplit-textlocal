@@ -8,8 +8,11 @@ use Netsplit\Textlocal\Textlocal\Exception\NoRecipientsError;
 use Netsplit\Textlocal\Textlocal\ValueObject\Balance;
 use Netsplit\Textlocal\Textlocal\ValueObject\BatchID;
 use Netsplit\Textlocal\Textlocal\ValueObject\Cost;
+use Netsplit\Textlocal\Textlocal\ValueObject\Custom;
 use Netsplit\Textlocal\Textlocal\ValueObject\Quantity;
+use Netsplit\Textlocal\Textlocal\ValueObject\ReceiptURL;
 use Netsplit\Textlocal\Textlocal\ValueObject\Status;
+use Netsplit\Textlocal\Textlocal\ValueObject\Test;
 use stdClass;
 
 /**
@@ -22,11 +25,14 @@ use stdClass;
 final class ResponseFactory
 {
     private static $valueObjectMap = [
-        'balance'  => Balance::class,
-        'batch_id' => BatchID::class,
-        'cost'     => Cost::class,
-        'quantity' => Quantity::class,
-        'status'   => Status::class,
+        'balance'      => Balance::class,
+        'batch_id'     => BatchID::class,
+        'cost'         => Cost::class,
+        'num_messages' => Quantity::class,
+        'status'       => Status::class,
+        'receipt_url'  => ReceiptURL::class,
+        'test_mode'    => Test::class,
+        'custom'       => Custom::class,
     ];
 
     /**
@@ -35,11 +41,14 @@ final class ResponseFactory
      * @var array
      */
     private static $setterMap = [
-        'balance'  => 'setBalance',
-        'batch_id' => 'setBatchId',
-        'cost'     => 'setCost',
-        'quantity' => 'setQuantity',
-        'status'   => 'setStatus',
+        'balance'      => 'setBalance',
+        'batch_id'     => 'setBatchId',
+        'cost'         => 'setCost',
+        'num_messages' => 'setQuantity',
+        'status'       => 'setStatus',
+        'receipt_url'  => 'setReceiptUrl',
+        'test_mode'    => 'setTest',
+        'custom'       => 'setCustom',
     ];
 
     /**
