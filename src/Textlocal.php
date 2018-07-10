@@ -2,10 +2,10 @@
 
 namespace Netsplit\Textlocal;
 
-use Netsplit\Textlocal\Textlocal\Factory\ShortURL\RequestFactory;
 use Netsplit\Textlocal\Textlocal\Factory\SMS\MessageFactory;
-use Netsplit\Textlocal\Textlocal\Service\ShortURL\RequestService;
+use Netsplit\Textlocal\Textlocal\Factory\ShortURL\RequestFactory;
 use Netsplit\Textlocal\Textlocal\Service\SMS\SendService;
+use Netsplit\Textlocal\Textlocal\Service\ShortURL\RequestService;
 
 /**
  * Class Textlocal provides access to the library's Service classes.
