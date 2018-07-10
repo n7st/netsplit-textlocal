@@ -49,6 +49,13 @@ $textlocal->sendSMS('Message content', [
 ]);
 ```
 
+### Shorten a URL
+
+```php
+$response = $textlocal->getShortURL('https://www.google.com');
+$shortURL = $response->getShortURL()->__toString();
+```
+
 ## Change log
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
