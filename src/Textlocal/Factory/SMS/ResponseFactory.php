@@ -16,7 +16,7 @@ use Netsplit\Textlocal\Textlocal\ValueObject\Test;
 use stdClass;
 
 /**
- * Class ResponseFactory builds a SMS\Response object.
+ * Class ResponseFactory builds a SMS\Response entity.
  *
  * @package Netsplit\Textlocal\Textlocal\Factory\SMS
  * @author Mike Jones <mike@netsplit.org.uk>
@@ -24,6 +24,9 @@ use stdClass;
  */
 final class ResponseFactory
 {
+    /**
+     * @var array
+     */
     private static $valueObjectMap = [
         'balance'      => Balance::class,
         'batch_id'     => BatchID::class,
@@ -85,6 +88,8 @@ final class ResponseFactory
     }
 
     /**
+     * Take a flat array of stdClasses and convert them to a plain array.
+     *
      * @param array $recipients
      * @return array
      */

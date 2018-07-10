@@ -12,7 +12,7 @@ use Netsplit\Textlocal\Textlocal\ValueObject\Status;
 use Netsplit\Textlocal\Textlocal\ValueObject\Test;
 
 /**
- * Class SMSResponse contains a Textlocal response from a "send" action.
+ * Class Response contains a Textlocal response from a "send" action.
  *
  * @package Netsplit\Textlocal\Textlocal\Entity
  * @author Mike Jones <mike@netsplit.org.uk>
