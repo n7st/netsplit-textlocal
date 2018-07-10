@@ -78,8 +78,8 @@ final class MessageFactory
         $recipientFactory = new RecipientFactory();
         $recipientFactory->make($this->convertNumbersToRecipientArray($numbers));
 
-        $extraArgs      = $this->fillExtraArgDefaults($extraArgs);
-        $recipientList  = $recipientFactory->commaSeparate();
+        $extraArgs     = $this->fillExtraArgDefaults($extraArgs);
+        $recipientList = $recipientFactory->commaSeparate();
 
         $sms = new Message();
         $sms->setContent(new SMSContent($content));

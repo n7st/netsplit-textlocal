@@ -43,11 +43,15 @@ final class MessageFactoryTest extends \PHPUnit\Framework\TestCase
     public function testMessageArguments()
     {
         $this->assertEquals($this->sms->toServiceArguments(), [
-            'sender'  => 'Some Sender',
-            'test'    => true,
-            'custom'  => 'Some Ref',
-            'numbers' => '07777777777,07777777778,07777777779',
-            'message' => 'Message here',
+            'custom'         => 'Some Ref',
+            'message'        => 'Message here',
+            'numbers'        => '07777777777,07777777778,07777777779',
+            'optouts'        => false,
+            'sender'         => 'Some Sender',
+            'simple_reply'   => false,
+            'test'           => true,
+            'tracking_links' => false,
+            'unicode'        => false,
         ]);
     }
 }

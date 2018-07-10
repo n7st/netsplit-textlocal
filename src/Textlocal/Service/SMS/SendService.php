@@ -26,7 +26,6 @@ final class SendService extends HTTPService
     public function send(Message $message)
     {
         $response = $this->post($message->toServiceArguments());
-        var_dump($response); die;
 
         return (new \Netsplit\Textlocal\Textlocal\Factory\SMS\ResponseFactory)->make($response, $message);
     }

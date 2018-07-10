@@ -34,4 +34,12 @@ class Boolean implements BooleanValueObject
     {
         return $this->value;
     }
+
+    /**
+     * @return bool
+     */
+    public function isTrue()
+    {
+        return $this->getValue();
+    }
 }

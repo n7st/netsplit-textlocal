@@ -26,58 +26,56 @@ use Netsplit\Textlocal\Textlocal\ValueObject\ValidUntil;
 final class Message
 {
     /**
-     * @var array
+     * @var Custom
      */
-    public static $optionalOptionMap = [
-        'containsTrackingLinks' => 'tracking_links',
-        'custom'                => 'custom',
-        'groupID'               => 'group_id',
-        'receiptURL'            => 'receipt_url',
-        'scheduleTime'          => 'schedule_time',
-        'sendToOptOut'          => 'optouts',
-        'sender'                => 'sender',
-        'simpleReply'           => 'simple_reply',
-        'test'                  => 'test',
-        'unicode'               => 'unicode',
-        'validUntil'            => 'validity',
-    ];
+    protected $custom;
 
     /**
-     * @var string
+     * @var SMSContent
      */
-    protected $content, $sender, $receiptURL, $custom;
+    protected $content;
+
+    /**
+     * @var Sender
+     */
+    protected $sender;
+
+    /**
+     * @var ReceiptURL
+     */
+    protected $receiptURL;
 
     /**
      * A comma-separated list of mobile numbers.
      *
-     * @var string
+     * @var RecipientList
      */
     protected $recipients;
 
     /**
-     * @var int
+     * @var GroupID
      */
     protected $groupID;
 
     /**
      * UNIX timestamp for a scheduled message.
      *
-     * @var int
+     * @var ScheduledAt
      */
     protected $scheduleTime;
 
     /**
      * Overrides the sender with a Simple Reply Service number.
      *
-     * @var bool
+     * @var SimpleReply
      */
-    protected $simpleReply = false;
+    protected $simpleReply;
 
     /**
      * UNIX timestamp set to some time in the future. How long a message is
      * valid for.
      *
-     * @var int
+     * @var ValidUntil
      */
     protected $validUntil;
 
@@ -85,31 +83,31 @@ final class Message
      * Should the message be sent to users who have opted out of your mailing
      * list? Defaults to false.
      *
-     * @var bool
+     * @var SendToOptOut
      */
-    protected $sendToOptOut = false;
+    protected $sendToOptOut;
 
     /**
      * Does the message contain unicode characters? Defaults to false.
      *
-     * @var bool
+     * @var Unicode
      */
-    protected $unicode = false;
+    protected $unicode;
 
     /**
      * Does the message contain links which should be converted to short URLs?
      *
-     * @var bool
+     * @var ContainsTrackingLinks
      */
-    protected $containsTrackingLinks = false;
+    protected $containsTrackingLinks;
 
     /**
      * If this is set to true, no credit will be used (but the message won't
      * really be sent).
      *
-     * @var bool
+     * @var Test
      */
-    protected $test = false;
+    protected $test;
 
     /**
      * @param Sender $sender
@@ -117,7 +115,7 @@ final class Message
      */
     public function setSender(Sender $sender)
     {
-        $this->sender = $sender->__toString();
+        $this->sender = $sender;
     }
 
     /**
@@ -126,7 +124,15 @@ final class Message
      */
     public function setContent(SMSContent $content)
     {
-        $this->content = $content->__toString();
+        $this->content = $content;
+    }
+
+    /**
+     * @return SMSContent
+     */
+    public function getContent()
+    {
+        return $this->content;
     }
 
     /**
@@ -135,7 +141,7 @@ final class Message
      */
     public function setRecipientList(RecipientList $list)
     {
-        $this->recipients = $list->__toString();
+        $this->recipients = $list;
     }
 
     /**
@@ -144,7 +150,7 @@ final class Message
      */
     public function setSimpleReply(SimpleReply $simpleReply)
     {
-        $this->simpleReply = $simpleReply->getValue();
+        $this->simpleReply = $simpleReply;
     }
 
     /**
@@ -153,7 +159,7 @@ final class Message
      */
     public function setTest(Test $test)
     {
-        $this->test = $test->getValue();
+        $this->test = $test;
     }
 
     /**
@@ -162,7 +168,7 @@ final class Message
      */
     public function setUnicode(Unicode $unicode)
     {
-        $this->unicode = $unicode->getValue();
+        $this->unicode = $unicode;
     }
 
     /**
@@ -171,7 +177,7 @@ final class Message
      */
     public function setContainsTrackingLinks(ContainsTrackingLinks $containsTrackingLinks)
     {
-        $this->containsTrackingLinks = $containsTrackingLinks->getValue();
+        $this->containsTrackingLinks = $containsTrackingLinks;
     }
 
     /**
@@ -180,7 +186,7 @@ final class Message
      */
     public function setSendToOptOut(SendToOptOut $sendToOptOut)
     {
-        $this->sendToOptOut = $sendToOptOut->getValue();
+        $this->sendToOptOut = $sendToOptOut;
     }
 
     /**
@@ -189,7 +195,7 @@ final class Message
      */
     public function setScheduleTime(ScheduledAt $scheduleTime)
     {
-        $this->scheduleTime = $scheduleTime->getValue();
+        $this->scheduleTime = $scheduleTime;
     }
 
     /**
@@ -198,7 +204,7 @@ final class Message
      */
     public function setValidUntil(ValidUntil $validUntil)
     {
-        $this->validUntil = $validUntil->getValue();
+        $this->validUntil = $validUntil;
     }
 
     /**
@@ -207,7 +213,7 @@ final class Message
      */
     public function setReceiptURL(ReceiptURL $receiptURL)
     {
-        $this->receiptURL = $receiptURL->__toString();
+        $this->receiptURL = $receiptURL;
     }
 
     /**
@@ -216,7 +222,7 @@ final class Message
      */
     public function setGroupID(GroupID $groupID)
     {
-        $this->groupID = $groupID->getValue();
+        $this->groupID = $groupID;
     }
 
     /**
@@ -225,7 +231,7 @@ final class Message
      */
     public function setCustom(Custom $custom)
     {
-        $this->custom = $custom->__toString();
+        $this->custom = $custom;
     }
 
     /**
@@ -237,23 +243,138 @@ final class Message
     public function toServiceArguments()
     {
         $args = [
-            'message' => $this->content,
-            'numbers' => $this->recipients,
-            'sender'  => $this->sender,
+            'message' => $this->content->__toString(),
+            'numbers' => $this->recipients->__toString(),
+            'sender'  => $this->sender->__toString(),
         ];
 
-        foreach (self::$optionalOptionMap as $ours => $theirs) {
-            $val = $this->$ours;
+        // Boolean options default to false
+        $args['tracking_links'] = $this->containsTrackingLinks->getValue();
+        $args['optouts']        = $this->sendToOptOut->getValue();
+        $args['simple_reply']   = $this->simpleReply->getValue();
+        $args['test']           = $this->test->getValue();
+        $args['unicode']        = $this->unicode->getValue();
 
-            if ($val) {
-                $args[$theirs] = $val;
-            }
+        if ($this->custom) {
+            $args['custom'] = $this->custom->__toString();
         }
 
-        if ($this->simpleReply) {
+        if ($this->groupID) {
+            $args['group_id'] = $this->groupID->getValue();
+        }
+
+        if ($this->receiptURL) {
+            $args['receipt_url'] = $this->receiptURL->__toString();
+        }
+
+        if ($this->scheduleTime) {
+            $args['schedule_time'] = $this->scheduleTime->getValue();
+        }
+
+        if ($this->validUntil) {
+            $args['validity'] = $this->validUntil->getValue();
+        }
+
+        if ($this->simpleReply && $this->simpleReply->isTrue()) {
             unset($args['sender']);
         }
 
         return $args;
+    }
+
+    /**
+     * @return Custom
+     */
+    public function getCustom()
+    {
+        return $this->custom;
+    }
+
+    /**
+     * @return Sender
+     */
+    public function getSender()
+    {
+        return $this->sender;
+    }
+
+    /**
+     * @return ReceiptURL
+     */
+    public function getReceiptURL()
+    {
+        return $this->receiptURL;
+    }
+
+    /**
+     * @return RecipientList
+     */
+    public function getRecipients()
+    {
+        return $this->recipients;
+    }
+
+    /**
+     * @param RecipientList $recipients
+     */
+    public function setRecipients($recipients)
+    {
+        $this->recipients = $recipients;
+    }
+
+    /**
+     * @return GroupID
+     */
+    public function getGroupID()
+    {
+        return $this->groupID;
+    }
+
+    /**
+     * @return ScheduledAt
+     */
+    public function getScheduleTime()
+    {
+        return $this->scheduleTime;
+    }
+
+    /**
+     * @return SimpleReply
+     */
+    public function getSimpleReply()
+    {
+        return $this->simpleReply;
+    }
+
+    /**
+     * @return ContainsTrackingLinks
+     */
+    public function getContainsTrackingLinks()
+    {
+        return $this->containsTrackingLinks;
+    }
+
+    /**
+     * @return Unicode
+     */
+    public function getUnicode()
+    {
+        return $this->unicode;
+    }
+
+    /**
+     * @return ValidUntil
+     */
+    public function getValidUntil()
+    {
+        return $this->validUntil;
+    }
+
+    /**
+     * @return Test
+     */
+    public function getTest()
+    {
+        return $this->test;
     }
 }
