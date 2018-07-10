@@ -26,10 +26,10 @@ $textlocal = new Netsplit\Textlocal(
 
 ### Send an SMS message
 
-API documentation is available for the "send" endpoint [here](http://api.txtlocal.com/docs/sendsms).
+[API documentation for the "send" endpoint](http://api.txtlocal.com/docs/sendsms).
 
 ```php
-$textlocal->sendSMS('Message content', [
+$response = $textlocal->sendSMS('Message content', [
     // Array of mobile numbers
     '07777777777',
     '07777777778',
@@ -47,9 +47,15 @@ $textlocal->sendSMS('Message content', [
     'unicode'               => false, // Does the SMS contain unicode characters?
     'validUntil'            => 1530735994, // Unix timestamp - disregard the SMS at this time
 ]);
+
+// Access values from the response:
+echo $response->getStatus()->__toString(); // Hopefully "success"!
+echo $response->getBalance()->getValue();
 ```
 
 ### Shorten a URL
+
+[API documentation for the "short URL" endpoint](http://api.txtlocal.com/docs/shorturl)
 
 ```php
 $response = $textlocal->getShortURL('https://www.google.com');
