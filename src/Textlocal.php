@@ -2,10 +2,11 @@
 
 namespace Netsplit\Textlocal;
 
-use Netsplit\Textlocal\Textlocal\Service\SendSMSService;
+use Netsplit\Textlocal\Textlocal\Factory\SMS\MessageFactory;
+use Netsplit\Textlocal\Textlocal\Service\SMS\SendService;
 
 /**
- * Class Textlocal
+ * Class Textlocal provides access to the library's Service classes.
  *
  * @package Netsplit\Textlocal
  * @author Mike Jones <mike@netsplit.org.uk>
@@ -21,7 +22,7 @@ class Textlocal
     protected $baseURL, $apiKey;
 
     /**
-     * @var SendSMSService
+     * @var SendService
      */
     protected $sendSMSService;
 
@@ -37,7 +38,7 @@ class Textlocal
         $this->baseURL = $baseURL;
         $this->apiKey  = $apiKey;
 
-        $this->sendSMSService = new SendSMSService($this->formatAPIURL('send'), $apiKey);
+        $this->sendSMSService = new SendService($this->formatAPIURL('send'), $apiKey);
     }
 
     /**
@@ -46,13 +47,13 @@ class Textlocal
      * @param string $message
      * @param array $recipients
      * @param array $extraArgs
-     * @return array
+     * @return Textlocal\Entity\SMS\Response
      * @throws Textlocal\Exception\HTTPError
      * @throws Textlocal\Exception\NoRecipientsError
      */
     public function sendSMS($message, $recipients, $extraArgs = [])
     {
-        $sms = (new Textlocal\Factory\SMSFactory)->make($message, $recipients, $extraArgs);
+        $sms = (new MessageFactory)->make($message, $recipients, $extraArgs);
 
         return $this->sendSMSService->send($sms);
     }

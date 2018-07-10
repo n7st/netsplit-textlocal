@@ -3,16 +3,12 @@
 namespace Netsplit\Textlocal\Textlocal\ValueObject;
 
 /**
- * Interface IntegerValueObject
+ * Class ID
  *
  * @package Netsplit\Textlocal\Textlocal\ValueObject
  * @author Mike Jones <mike@netsplit.org.uk>
- * @since 2018-07-04
+ * @since 2018-07-09
  */
-interface IntegerValueObject
+abstract class ID extends UnsignedInteger
 {
-    /**
-     * @return int
-     */
-    public function getValue();
 }

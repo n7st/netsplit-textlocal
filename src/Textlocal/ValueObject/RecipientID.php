@@ -3,16 +3,12 @@
 namespace Netsplit\Textlocal\Textlocal\ValueObject;
 
 /**
- * Interface IntegerValueObject
+ * Class RecipientID
  *
  * @package Netsplit\Textlocal\Textlocal\ValueObject
  * @author Mike Jones <mike@netsplit.org.uk>
- * @since 2018-07-04
+ * @since 2018-07-10
  */
-interface IntegerValueObject
+class RecipientID extends ID
 {
-    /**
-     * @return int
-     */
-    public function getValue();
 }

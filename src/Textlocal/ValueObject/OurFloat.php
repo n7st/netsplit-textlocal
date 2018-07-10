@@ -3,23 +3,22 @@
 namespace Netsplit\Textlocal\Textlocal\ValueObject;
 
 /**
- * Class BooleanValueObjectBase
+ * Class OurFloat
  *
  * @package Netsplit\Textlocal\Textlocal\ValueObject
  * @author Mike Jones <mike@netsplit.org.uk>
- * @since 2018-07-04
+ * @since 2018-07-09
  */
-class Boolean implements BooleanValueObject
+abstract class OurFloat implements FloatValueObject
 {
     /**
-     * @var bool
+     * @var float
      */
-    protected $value = false;
+    protected $value;
 
     /**
-     * BooleanValueObjectBase constructor.
-     *
-     * @param bool $value
+     * OurFloat constructor.
+     * @param float $value
      * @return void
      */
     public function __construct($value)
@@ -28,18 +27,10 @@ class Boolean implements BooleanValueObject
     }
 
     /**
-     * @return bool
+     * @return float
      */
     public function getValue()
     {
         return $this->value;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isTrue()
-    {
-        return $this->getValue();
     }
 }

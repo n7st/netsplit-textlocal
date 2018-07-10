@@ -1,9 +1,10 @@
 <?php
 
-namespace Netsplit\Textlocal\Textlocal\Factory;
+namespace Netsplit\Textlocal\Textlocal\Factory\SMS;
 
-use Netsplit\Textlocal\Textlocal\Entity\SMS;
+use Netsplit\Textlocal\Textlocal\Entity\SMS\Message;
 use Netsplit\Textlocal\Textlocal\ValueObject\ContainsTrackingLinks;
+use Netsplit\Textlocal\Textlocal\ValueObject\RecipientList;
 use Netsplit\Textlocal\Textlocal\ValueObject\SendToOptOut;
 use Netsplit\Textlocal\Textlocal\ValueObject\SimpleReply;
 use Netsplit\Textlocal\Textlocal\ValueObject\Test;
@@ -16,13 +17,13 @@ use Netsplit\Textlocal\Textlocal\ValueObject\Sender;
 use Netsplit\Textlocal\Textlocal\ValueObject\ValidUntil;
 
 /**
- * Class SMSFactory
+ * Class MessageFactory
  *
- * @package Netsplit\Textlocal\Textlocal\Factory
+ * @package Netsplit\Textlocal\Textlocal\Factory\SMS
  * @author Mike Jones <mike@netsplit.org.uk>
  * @since 2018-07-04
  */
-final class SMSFactory
+final class MessageFactory
 {
     /**
      * @var array
@@ -69,27 +70,20 @@ final class SMSFactory
      * @param string $content
      * @param array $numbers
      * @param array $extraArgs
-     * @return SMS
+     * @return Message
      * @throws \Netsplit\Textlocal\Textlocal\Exception\NoRecipientsError
      */
     public function make($content, $numbers, $extraArgs = [])
     {
-        $recipients    = (new RecipientFactory)->make($numbers);
-        $recipientList = (new RecipientListFactory)->make($recipients);
-        $content       = new SMSContent($content);
+        $recipientFactory = new RecipientFactory();
+        $recipientFactory->make($this->convertNumbersToRecipientArray($numbers));
 
-        $booleanOptions = array_keys(self::$optionalBooleanOptionMap);
+        $extraArgs     = $this->fillExtraArgDefaults($extraArgs);
+        $recipientList = $recipientFactory->commaSeparate();
 
-        foreach ($booleanOptions as $opt) {
-            if (!isset($extraArgs[$opt])) {
-                $extraArgs[$opt] = false;
-            }
-        }
-
-        $sms = new SMS();
-
-        $sms->setContent($content);
-        $sms->setRecipientList($recipientList);
+        $sms = new Message();
+        $sms->setContent(new SMSContent($content));
+        $sms->setRecipientList(new RecipientList($recipientList));
 
         $allOptionalOptions = array_merge(
             self::$optionalOptionValueObjectMap,
@@ -105,5 +99,35 @@ final class SMSFactory
         }
 
         return $sms;
+    }
+
+    /**
+     * Default boolean options to false.
+     *
+     * @param array $extraArgs
+     * @return array
+     */
+    private function fillExtraArgDefaults(array $extraArgs)
+    {
+        $booleanOptions = array_keys(self::$optionalBooleanOptionMap);
+
+        foreach ($booleanOptions as $opt) {
+            if (!isset($extraArgs[$opt])) {
+                $extraArgs[$opt] = false;
+            }
+        }
+
+        return $extraArgs;
+    }
+
+    /**
+     * @param array $numbers
+     * @return array
+     */
+    private function convertNumbersToRecipientArray(array $numbers)
+    {
+        return array_map(function ($n) {
+            return [ RecipientFactory::KEY_RECIPIENT => $n ];
+        }, $numbers);
     }
 }

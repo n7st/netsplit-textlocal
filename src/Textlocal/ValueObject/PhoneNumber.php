@@ -3,16 +3,12 @@
 namespace Netsplit\Textlocal\Textlocal\ValueObject;
 
 /**
- * Interface IntegerValueObject
+ * Class Recipient
  *
  * @package Netsplit\Textlocal\Textlocal\ValueObject
  * @author Mike Jones <mike@netsplit.org.uk>
- * @since 2018-07-04
+ * @since 2018-07-03
  */
-interface IntegerValueObject
+final class PhoneNumber extends OurString
 {
-    /**
-     * @return int
-     */
-    public function getValue();
 }

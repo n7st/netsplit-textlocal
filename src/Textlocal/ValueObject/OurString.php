@@ -9,7 +9,7 @@ namespace Netsplit\Textlocal\Textlocal\ValueObject;
  * @author Mike Jones <mike@netsplit.org.uk>
  * @since 2018-07-04
  */
-class OurString implements StringValueObject
+abstract class OurString implements StringValueObject
 {
     /**
      * @var string
