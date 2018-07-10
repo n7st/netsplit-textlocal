@@ -2,7 +2,9 @@
 
 namespace Netsplit\Textlocal;
 
+use Netsplit\Textlocal\Textlocal\Factory\ShortURL\RequestFactory;
 use Netsplit\Textlocal\Textlocal\Factory\SMS\MessageFactory;
+use Netsplit\Textlocal\Textlocal\Service\ShortURL\RequestService;
 use Netsplit\Textlocal\Textlocal\Service\SMS\SendService;
 
 /**
@@ -27,6 +29,11 @@ class Textlocal
     protected $sendSMSService;
 
     /**
+     * @var RequestService
+     */
+    protected $requestShortURLService;
+
+    /**
      * Textlocal constructor.
      *
      * @param string $baseURL
@@ -38,7 +45,8 @@ class Textlocal
         $this->baseURL = $baseURL;
         $this->apiKey  = $apiKey;
 
-        $this->sendSMSService = new SendService($this->formatAPIURL('send'), $apiKey);
+        $this->sendSMSService         = new SendService($this->formatAPIURL('send'), $apiKey);
+        $this->requestShortURLService = new RequestService($this->formatAPIURL('create_shorturl'), $apiKey);
     }
 
     /**
@@ -56,6 +64,21 @@ class Textlocal
         $sms = (new MessageFactory)->make($message, $recipients, $extraArgs);
 
         return $this->sendSMSService->send($sms);
+    }
+
+    /**
+     * Shorten a URL.
+     *
+     * @param $inputURL
+     * @return Textlocal\Entity\ShortURL\Response
+     * @throws Textlocal\Exception\HTTPError
+     * @throws Textlocal\Exception\MissingParameterError
+     */
+    public function getShortURL($inputURL)
+    {
+        $request = (new RequestFactory)->make($inputURL);
+
+        return $this->requestShortURLService->request($request);
     }
 
     /**
