@@ -5,6 +5,7 @@ namespace Netsplit\Textlocal\Textlocal\Factory\SMS;
 use Netsplit\Textlocal\Textlocal\Entity\SMS\Message;
 use Netsplit\Textlocal\Textlocal\ValueObject\ContainsTrackingLinks;
 use Netsplit\Textlocal\Textlocal\ValueObject\RecipientList;
+use Netsplit\Textlocal\Textlocal\ValueObject\ScheduledAt;
 use Netsplit\Textlocal\Textlocal\ValueObject\SendToOptOut;
 use Netsplit\Textlocal\Textlocal\ValueObject\SimpleReply;
 use Netsplit\Textlocal\Textlocal\ValueObject\Test;
@@ -40,11 +41,12 @@ final class MessageFactory
      * @var array
      */
     protected static $optionalOptionValueObjectMap = [
-        'custom'     => Custom::class,
-        'groupID'    => GroupID::class,
-        'receiptURL' => ReceiptURL::class,
-        'sender'     => Sender::class,
-        'validUntil' => ValidUntil::class,
+        'custom'       => Custom::class,
+        'groupID'      => GroupID::class,
+        'receiptURL'   => ReceiptURL::class,
+        'scheduleTime' => ScheduledAt::class,
+        'sender'       => Sender::class,
+        'validUntil'   => ValidUntil::class,
     ];
 
     /**

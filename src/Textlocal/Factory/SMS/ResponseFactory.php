@@ -4,7 +4,6 @@ namespace Netsplit\Textlocal\Textlocal\Factory\SMS;
 
 use Netsplit\Textlocal\Textlocal\Entity\SMS\Message;
 use Netsplit\Textlocal\Textlocal\Entity\SMS\Response;
-use Netsplit\Textlocal\Textlocal\Exception\NoRecipientsError;
 use Netsplit\Textlocal\Textlocal\ValueObject\Balance;
 use Netsplit\Textlocal\Textlocal\ValueObject\BatchID;
 use Netsplit\Textlocal\Textlocal\ValueObject\Cost;
@@ -22,7 +21,7 @@ use stdClass;
  * @author Mike Jones <mike@netsplit.org.uk>
  * @since 2018-07-09
  */
-final class ResponseFactory
+final class ResponseFactory extends \Netsplit\Textlocal\Textlocal\Factory\ResponseFactory
 {
     /**
      * @var array
@@ -60,7 +59,7 @@ final class ResponseFactory
      * @param stdClass $input
      * @param Message $message
      * @return Response
-     * @throws \Netsplit\Textlocal\Textlocal\Exception\NoRecipientsError
+     * @throws \Netsplit\Textlocal\Textlocal\Exception\NegativeIDError
      */
     public function make(stdClass $input, Message $message)
     {
@@ -77,14 +76,12 @@ final class ResponseFactory
         // The sent message, for easy access
         $response->setMessage($message);
 
-        try {
+        if (isset($input->messages)) {
             $recipients = (new RecipientFactory)->make($this->convertRecipientsToArray($input->messages));
             $response->setRecipients($recipients);
-        } catch (NoRecipientsError $e) {
-            throw new NoRecipientsError('This message did not reach any recipients', null, $e);
         }
 
-        return $response;
+        return parent::addStatus($response, $input);
     }
 
     /**
@@ -93,7 +90,7 @@ final class ResponseFactory
      * @param array $recipients
      * @return array
      */
-    private function convertRecipientsToArray(array $recipients)
+    private function convertRecipientsToArray($recipients = [])
     {
         return array_map(function ($r) {
             return (array)$r;

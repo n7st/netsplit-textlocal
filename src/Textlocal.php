@@ -4,6 +4,7 @@ namespace Netsplit\Textlocal;
 
 use Netsplit\Textlocal\Textlocal\Factory\SMS\MessageFactory;
 use Netsplit\Textlocal\Textlocal\Factory\ShortURL\RequestFactory;
+use Netsplit\Textlocal\Textlocal\Service\ScheduledMessage\GetService;
 use Netsplit\Textlocal\Textlocal\Service\SMS\SendService;
 use Netsplit\Textlocal\Textlocal\Service\ShortURL\RequestService;
 
@@ -29,6 +30,11 @@ class Textlocal
     protected $sendSMSService;
 
     /**
+     * @var GetService
+     */
+    protected $getScheduledMessageService;
+
+    /**
      * @var RequestService
      */
     protected $requestShortURLService;
@@ -45,8 +51,9 @@ class Textlocal
         $this->baseURL = $baseURL;
         $this->apiKey  = $apiKey;
 
-        $this->sendSMSService         = new SendService($this->formatAPIURL('send'), $apiKey);
-        $this->requestShortURLService = new RequestService($this->formatAPIURL('create_shorturl'), $apiKey);
+        $this->sendSMSService             = new SendService($this->formatAPIURL('send'), $apiKey);
+        $this->getScheduledMessageService = new GetService($this->formatAPIURL('get_scheduled'), $apiKey);
+        $this->requestShortURLService     = new RequestService($this->formatAPIURL('create_shorturl'), $apiKey);
     }
 
     /**
@@ -64,6 +71,16 @@ class Textlocal
         $sms = (new MessageFactory)->make($message, $recipients, $extraArgs);
 
         return $this->sendSMSService->send($sms);
+    }
+
+    /**
+     * @return array
+     * @throws Textlocal\Exception\HTTPError
+     * @throws Textlocal\Exception\NegativeIDError
+     */
+    public function getScheduledMessages()
+    {
+        return $this->getScheduledMessageService->getScheduledMessages();
     }
 
     /**

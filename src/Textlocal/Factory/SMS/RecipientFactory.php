@@ -3,7 +3,6 @@
 namespace Netsplit\Textlocal\Textlocal\Factory\SMS;
 
 use Netsplit\Textlocal\Textlocal\Entity\SMS\Recipient;
-use Netsplit\Textlocal\Textlocal\Exception\NoRecipientsError;
 use Netsplit\Textlocal\Textlocal\ValueObject\PhoneNumber;
 use Netsplit\Textlocal\Textlocal\ValueObject\RecipientID;
 
@@ -36,7 +35,6 @@ final class RecipientFactory
      *
      * @param array $args
      * @return Recipient[]
-     * @throws NoRecipientsError
      */
     public function make(array $args)
     {
@@ -44,7 +42,7 @@ final class RecipientFactory
             return isset($r[self::KEY_RECIPIENT]);
         });
 
-        $RecipientList = array_map(function ($r) {
+        $recipientList = array_map(function ($r) {
             $recipient = new Recipient();
 
             $recipient->setNumber(new PhoneNumber($r[self::KEY_RECIPIENT]));
@@ -56,18 +54,13 @@ final class RecipientFactory
             return $recipient;
         }, $args);
 
-        if (!count($RecipientList)) {
-            throw new NoRecipientsError('No recipients were provided');
-        }
+        $this->recipients = $recipientList;
 
-        $this->recipients = $RecipientList;
-
-        return $RecipientList;
+        return $recipientList;
     }
 
     /**
      * @return string
-     * @throws NoRecipientsError
      */
     public function commaSeparate()
     {
@@ -75,10 +68,6 @@ final class RecipientFactory
             /** @var Recipient $r */
             return $r->getNumber()->__toString();
         }, $this->recipients);
-
-        if (!count($flatNumbers)) {
-            throw new NoRecipientsError('No recipients were provided');
-        }
 
         return implode(',', $flatNumbers);
     }
