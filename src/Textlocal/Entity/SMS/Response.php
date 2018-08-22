@@ -18,7 +18,7 @@ use Netsplit\Textlocal\Textlocal\ValueObject\Test;
  * @author Mike Jones <mike@netsplit.org.uk>
  * @since 2018-07-09
  */
-class Response
+final class Response extends \Netsplit\Textlocal\Textlocal\Entity\Response
 {
     /**
      * @var Balance
@@ -56,11 +56,6 @@ class Response
      * @var Recipient[]
      */
     private $recipients;
-
-    /**
-     * @var Status
-     */
-    private $status;
 
     /**
      * @var Test
